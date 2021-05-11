@@ -2,6 +2,7 @@ ImagePixelizer
 ========
 **Simply pixelize your images.**
 
+>The only files you need to use it on your projects are the files in the 'Pixelizer' folders.
 
 ### Result example
 
@@ -47,4 +48,14 @@ Pixelizer.TransformAndSave("Sample/Landscape.jpg", PixelImageLevel.VeryUltra, "S
 //Get transformed Bitmap object and do stuff with it
 var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Normal);
 
+```
+
+> Only the line you need
+
+```csharp
+//Transform and save the Bitmap
+Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryUltra, "Sample", "transformedImageVeryUltraLevel.png");
+
+//Or - use the transformed Bitmap
+var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Normal);
 ```
