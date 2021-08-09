@@ -22,8 +22,6 @@ Pixelizer.TransformAndSave(targetImagePath, PixelImageLevel.One, outputDirPath, 
 //Get transformed Bitmap object and do stuff with it
 //var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Two);
 
-Console.WriteLine("Finished.");
-Console.ReadKey();
 ```
 
 > Problem to fix
