@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ImagePixelizer
 {
-    internal class PixelizedColor
+    internal sealed class PixelizedColor
     {
         private uint _totalPixels;
         private uint _totalAlpha;

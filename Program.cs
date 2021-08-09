@@ -10,27 +10,17 @@ namespace ImagePixelizer
     {
         static void Main(string[] args)
         {
-            //Example usage
+            var targetImagePath = @"Sample/achievement.png";
+            var outputDirPath = @"Sample";
+            var outputName = @"achievement_icon.png";
 
-            //You can add levels on the PixelImageLevel enum object with different value for less or more pixelization
-            //The more the value is low, the less it will be pixelized
-
-            //103x139 PNG Image take 100-150ms to be transformed
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryUltra, "Sample", "transformedImageVeryUltraLevel.png");
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Ultra, "Sample", "transformedImageUltraLevel.png");
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryHigh, "Sample", "transformedImageVeryHighLevel.png");
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.High, "Sample", "transformedImageHighLevel.png");
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Normal, "Sample", "transformedImageNormalLevel.png");
-            Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Low, "Sample", "transformedImageLowLevel.png");
-
-            //1150x699 JPG Image take 5-10 seconds to be transformed
-            Pixelizer.TransformAndSave("Sample/Landscape.jpg", PixelImageLevel.VeryUltra, "Sample", "TransformedLandscape.png");
+            Pixelizer.TransformAndSave(targetImagePath, PixelImageLevel.Two, outputDirPath, outputName);
 
             //Get transformed Bitmap object and do stuff with it
-            var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Normal);
-            
-            Console.WriteLine("Transformed.");
-            Console.ReadLine();
+            //var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Two);
+
+            Console.WriteLine("Finished.");
+            Console.ReadKey();
         }
     }
 }

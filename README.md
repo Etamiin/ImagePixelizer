@@ -7,55 +7,27 @@ ImagePixelizer
 ### Result example
 
 ![Sample image](https://i.ibb.co/mBZL1G5/Sample-Image.png)
-![Sample image - Normal](https://i.ibb.co/wBJmQSy/transformed-Image-Low-Level.png)
-![Sample image - High](https://i.ibb.co/G915ry0/transformed-Image-High-Level.png)
+![Sample image 2](https://i.ibb.co/wBJmQSy/transformed-Image-Low-Level.png)
+![Sample image 3](https://i.ibb.co/G915ry0/transformed-Image-High-Level.png)
 
-Different levels are available, you can add new levels of transformations:
-> In PixelImageLevel.cs
-
-```csharp
-public enum PixelImageLevel : byte
-{
-  Low = 3,
-  Normal = 4,
-  High = 5,
-  VeryHigh = 6,
-  Ultra = 7,
-  VeryUltra = 8,
-  YourLevel = 999
-}
-```
-
-> Utilization examples - Program.cs
+> Program.cs (sample)
 
 ```csharp
-//output files are in 'bin/Debug/Sample' folder
+var targetImagePath = @"Sample/achievement.png";
+var outputDirPath = @"Sample";
+var outputName = @"achievement_icon.png";
 
-//You can add levels on the PixelImageLevel enum object with different value for less or more pixelization
-//The more the value is low, the less it will be pixelized
-
-//103x139 PNG Image take 100-150ms to be transformed
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryUltra, "Sample", "transformedImageVeryUltraLevel.png");
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Ultra, "Sample", "transformedImageUltraLevel.png");
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryHigh, "Sample", "transformedImageVeryHighLevel.png");
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.High, "Sample", "transformedImageHighLevel.png");
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Normal, "Sample", "transformedImageNormalLevel.png");
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.Low, "Sample", "transformedImageLowLevel.png");
-
-//1150x699 JPG Image take 5-10 seconds to be transformed
-Pixelizer.TransformAndSave("Sample/Landscape.jpg", PixelImageLevel.VeryUltra, "Sample", "TransformedLandscape.png");
+Pixelizer.TransformAndSave(targetImagePath, PixelImageLevel.One, outputDirPath, outputName);
 
 //Get transformed Bitmap object and do stuff with it
-var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Normal);
+//var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Two);
 
+Console.WriteLine("Finished.");
+Console.ReadKey();
 ```
 
-> Only the line you need
+> Problem to fix
 
-```csharp
-//Transform and save the Bitmap
-Pixelizer.TransformAndSave("Sample/SampleImage.png", PixelImageLevel.VeryUltra, "Sample", "transformedImageVeryUltraLevel.png");
-
-//Or - use the transformed Bitmap
-var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Normal);
+```
+An grey outline is added on the output image if the image is small
 ```
