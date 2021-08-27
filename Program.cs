@@ -10,17 +10,36 @@ namespace ImagePixelizer
     {
         static void Main(string[] args)
         {
-            var targetImagePath = @"Sample/achievement.png";
-            var outputDirPath = @"Sample";
-            var outputName = @"achievement_icon.png";
+            while (true)
+            {
+                try
+                {
+                    var targetImagePath = AskFor("Enter image path (ex: 'Sample/icon.png')");
+                    var outputDirPath = AskFor("Enter output folder path (ex: 'Sample')");
+                    var outputName = AskFor("Enter output name (ex: 'new_icon.png')");
+                    var pixelizationLevel = int.Parse(AskFor("Enter your pixelization level (ex: '2')"));
 
-            Pixelizer.TransformAndSave(targetImagePath, PixelImageLevel.Two, outputDirPath, outputName);
+                    Pixelizer.TransformAndSave(targetImagePath, (PixelImageLevel)pixelizationLevel, outputDirPath, outputName);
+
+                    Console.WriteLine("Pixelization ended.");
+                    Console.WriteLine("Enter key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Error: { ex }");
+                }
+            }
 
             //Get transformed Bitmap object and do stuff with it
             //var output = Pixelizer.TransformBitmap("Sample/SampleImage.jpg", PixelImageLevel.Two);
+        }
 
-            Console.WriteLine("Finished.");
-            Console.ReadKey();
+        private static string AskFor(string content)
+        {
+            Console.WriteLine(content);
+            return Console.ReadLine();
         }
     }
 }
